@@ -36,7 +36,7 @@ export default function NavigationList({
   };
 
   return (
-    <div className="space-y-4">
+    <div className="bg-white border border-[#D0D5DD] rounded-md">
       <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={items} strategy={verticalListSortingStrategy}>
           <div className="space-y-2">
@@ -52,14 +52,14 @@ export default function NavigationList({
           </div>
         </SortableContext>
       </DndContext>
-      <button
-        onClick={onAdd}
-        className="w-full p-2 border-2 border-dashed rounded-lg text-[#7F56D9] hover:bg-gray-50"
-      >
-        <div className="flex items-center justify-center gap-2">
+      <div className="py-5 pl-6 bg-[#F9FAFB] rounded-b-md">
+        <button
+          onClick={onAdd}
+          className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-[#D0D5DD] rounded-md hover:bg-gray-50 focus:z-10 focus:ring-2 focus:ring-gray-300"
+        >
           Dodaj pozycję menu
-        </div>
-      </button>
+        </button>
+      </div>
     </div>
   );
 }

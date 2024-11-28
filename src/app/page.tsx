@@ -64,9 +64,6 @@ export default function Home() {
 
         {(showForm || editingItem) && (
           <div>
-            <h2 className="text-xl font-semibold mb-4">
-              {editingItem ? "Edit Navigation" : "Add Navigation"}
-            </h2>
             <NavigationForm
               initialData={editingItem || undefined}
               onSubmit={(data) => {

@@ -47,18 +47,18 @@ export default function NavigationForm({
           <input
             {...register("label")}
             className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
-            placeholder="e.g., Promotions"
+            placeholder="np. Promocje"
           />
           {errors.label && (
             <span className="text-red-500 text-sm">{errors.label.message}</span>
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">URL</label>
+          <label className="block text-sm font-medium mb-1">Link</label>
           <input
             {...register("url")}
             className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
-            placeholder="Paste or search"
+            placeholder="Wklej lub wyszukaj"
           />
         </div>
         <div className="flex justify-end space-x-4 mt-6">
@@ -67,13 +67,13 @@ export default function NavigationForm({
             onClick={onClose}
             className="px-4 py-2 bg-gray-100 text-gray-700 rounded hover:bg-gray-200"
           >
-            Cancel
+            Anuluj
           </button>
           <button
             type="submit"
             className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
           >
-            Add
+            Dodaj
           </button>
         </div>
       </form>
