@@ -50,11 +50,8 @@ export default function Home() {
 
   return (
     <div className="max-w-4xl mx-auto p-8">
-      <h1 className="text-2xl font-bold mb-8">Navigation Manager</h1>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 gap-8">
         <div>
-          <h2 className="text-xl font-semibold mb-4">Navigation List</h2>
           <NavigationList
             items={items}
             onReorder={setItems}
@@ -89,6 +86,10 @@ export default function Home() {
                 } else {
                   handleAdd(data as NavigationItem);
                 }
+              }}
+              onClose={() => {
+                setShowForm(false);
+                setEditingItem(null);
               }}
             />
           </div>
