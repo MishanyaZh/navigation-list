@@ -3,8 +3,9 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { NavigationItem } from "@/types/navigation";
+import { NavigationItem, NavigationFormData } from "@/types/navigation";
 import NavigationListItem from "./NavigationListItem";
+import NavigationForm from "../NavigationForm/NavigationForm";
 
 interface Props {
   items: NavigationItem[];
@@ -13,6 +14,10 @@ interface Props {
   onRemove: (id: string) => void;
   onAddSubItem: (parentId: string) => void;
   onAdd: () => void;
+  showForm: boolean;
+  editingItem: NavigationItem | null;
+  onFormSubmit: (data: NavigationFormData) => void;
+  onFormClose: () => void;
 }
 
 export default function NavigationList({
@@ -22,6 +27,10 @@ export default function NavigationList({
   onRemove,
   onAddSubItem,
   onAdd,
+  showForm,
+  editingItem,
+  onFormSubmit,
+  onFormClose,
 }: Props) {
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -52,7 +61,18 @@ export default function NavigationList({
           </div>
         </SortableContext>
       </DndContext>
-      <div className="py-5 pl-6 bg-[#F9FAFB] rounded-b-md">
+
+      {(showForm || editingItem) && (
+        <div className="border-t border-[#D0D5DD]">
+          <NavigationForm
+            initialData={editingItem || undefined}
+            onSubmit={onFormSubmit}
+            onClose={onFormClose}
+          />
+        </div>
+      )}
+
+      <div className="py-5 pl-6 bg-[#F9FAFB] rounded-b-md border-t border-[#D0D5DD]">
         <button
           onClick={onAdd}
           className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-[#D0D5DD] rounded-md hover:bg-gray-50 focus:z-10 focus:ring-2 focus:ring-gray-300"

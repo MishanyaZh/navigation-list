@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import NavigationList from "@/components/NavigationList/NavigationList";
-import NavigationForm from "@/components/NavigationForm/NavigationForm";
 import EmptyState from "@/components/EmptyState/EmptyState";
 import { NavigationItem } from "@/types/navigation";
+import NavigationForm from "@/components/NavigationForm/NavigationForm";
 
 export default function Home() {
   const [items, setItems] = useState<NavigationItem[]>([]);
@@ -44,53 +44,52 @@ export default function Home() {
     setShowForm(true);
   };
 
-  if (items.length === 0 && !showForm) {
-    return <EmptyState onAddClick={() => setShowForm(true)} />;
+  if (items.length === 0) {
+    return (
+      <div className="max-w-4xl mx-auto p-8">
+        {showForm ? (
+          <NavigationForm
+            onSubmit={(data) => handleAdd(data as NavigationItem)}
+            onClose={() => setShowForm(false)}
+          />
+        ) : (
+          <EmptyState onAddClick={() => setShowForm(true)} />
+        )}
+      </div>
+    );
   }
 
   return (
     <div className="max-w-4xl mx-auto p-8">
       <div className="grid grid-cols-1 gap-8">
-        <div>
-          <NavigationList
-            items={items}
-            onReorder={setItems}
-            onEdit={setEditingItem}
-            onRemove={handleRemove}
-            onAddSubItem={handleAddSubItem}
-            onAdd={() => setShowForm(true)}
-          />
-        </div>
-
-        {(showForm || editingItem) && (
-          <div>
-            <NavigationForm
-              initialData={editingItem || undefined}
-              onSubmit={(data) => {
-                if (editingItem) {
-                  setItems(
-                    items.map((item) =>
-                      item.id === editingItem.id
-                        ? {
-                            ...data,
-                            id: item.id,
-                            children: item.children,
-                          }
-                        : item,
-                    ),
-                  );
-                  setEditingItem(null);
-                } else {
-                  handleAdd(data as NavigationItem);
-                }
-              }}
-              onClose={() => {
-                setShowForm(false);
-                setEditingItem(null);
-              }}
-            />
-          </div>
-        )}
+        <NavigationList
+          items={items}
+          onReorder={setItems}
+          onEdit={setEditingItem}
+          onRemove={handleRemove}
+          onAddSubItem={handleAddSubItem}
+          onAdd={() => setShowForm(true)}
+          showForm={showForm}
+          editingItem={editingItem}
+          onFormSubmit={(data) => {
+            if (editingItem) {
+              setItems(
+                items.map((item) =>
+                  item.id === editingItem.id
+                    ? { ...data, id: item.id, children: item.children }
+                    : item,
+                ),
+              );
+              setEditingItem(null);
+            } else {
+              handleAdd(data as NavigationItem);
+            }
+          }}
+          onFormClose={() => {
+            setShowForm(false);
+            setEditingItem(null);
+          }}
+        />
       </div>
     </div>
   );
