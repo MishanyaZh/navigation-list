@@ -48,20 +48,22 @@ export default function NavigationForm({
   });
 
   return (
-    <div className="bg-white border border-[#D0D5DD] rounded-md p-6 mx-6 my-4 relative">
+    <div className="bg-background-default border border-border-primary rounded-md p-6 mx-6 my-4 relative">
       <button
         onClick={onClose}
-        className="absolute right-4 top-4 text-gray-400 hover:text-gray-600"
+        className="absolute right-4 top-4 text-text-tertiary hover:text-text-secondary"
       >
         <TrashIcon className="hover:text-red-500 transition-colors" />
       </button>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-[95%]">
         <div>
-          <label className="block text-sm font-medium mb-1">Name</label>
+          <label className="block text-sm font-medium text-text-secondary mb-1">
+            Nazwa
+          </label>
           <input
             {...register("label")}
-            className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-[0px_1px_2px_0px_#1018280D]"
+            className="w-full p-2 border border-border-primary rounded text-base font-normal placeholder-text-placeholder focus:outline-none focus:ring-2 focus:ring-button-primary-bg shadow-custom"
             placeholder="np. Promocje"
           />
           {errors.label && (
@@ -69,14 +71,16 @@ export default function NavigationForm({
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">Link</label>
+          <label className="block text-sm font-medium text-text-secondary mb-1">
+            Link
+          </label>
           <div className="relative">
             <input
               {...register("url")}
-              className={`w-full pl-10 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-[0px_1px_2px_0px_#1018280D] ${
+              className={`w-full pl-10 p-2 border border-border-primary rounded text-base font-normal placeholder-text-placeholder focus:outline-none focus:ring-2 focus:ring-button-primary-bg  shadow-custom ${
                 errors.url ? "border-red-500" : ""
               }`}
-              placeholder="Wklej lub wyszukaj np. https://example.com"
+              placeholder="Wklej lub wyszukaj"
             />
             <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
           </div>
@@ -88,13 +92,13 @@ export default function NavigationForm({
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 border border-[#D0D5DD] rounded-md text-gray-700 hover:bg-gray-200 shadow-[0px_1px_2px_0px_#1018280D]"
+            className="px-4 py-2 text-sm font-semibold text-button-secondary-fg bg-white border border-border-primary rounded-md hover:bg-background-secondary shadow-custom"
           >
             Anuluj
           </button>
           <button
             type="submit"
-            className="px-4 py-2 border border-[#D0D5DD] rounded-md text-purple-700 hover:bg-gray-200 shadow-[0px_1px_2px_0px_#1018280D]"
+            className="px-4 py-2 text-sm font-semibold text-button-primary-action bg-white border border-border-primary rounded-md hover:bg-background-secondary shadow-custom"
           >
             Dodaj
           </button>

@@ -124,7 +124,7 @@ export default function NavigationList({
   };
 
   return (
-    <div className="bg-white border border-[#D0D5DD] rounded-md overflow-hidden">
+    <div className="bg-background-default border border-border-primary rounded-md overflow-hidden">
       <DndContext collisionDetection={pointerWithin} onDragEnd={handleDragEnd}>
         <SortableContext
           items={getAllIds(items)}
@@ -155,10 +155,10 @@ export default function NavigationList({
         </div>
       )}
 
-      <div className="py-5 pl-6 bg-[#F9FAFB] rounded-b-md border-[#D0D5DD]">
+      <div className="py-5 pl-6 bg-background-secondary rounded-b-md border-t border-border-primary">
         <button
           onClick={onAdd}
-          className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-[#D0D5DD] rounded-md hover:bg-gray-50 focus:z-10 focus:ring-2 focus:ring-gray-300 shadow-[0px_1px_2px_0px_#1018280D]"
+          className="px-4 py-2 text-sm font-semibold text-text-secondary bg-background-default border border-border-primary rounded-md hover:bg-background-secondary focus:ring-2 focus:ring-button-primary-action shadow-custom"
         >
           Dodaj pozycję menu
         </button>
