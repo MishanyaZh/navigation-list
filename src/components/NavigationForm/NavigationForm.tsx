@@ -6,8 +6,22 @@ import { TrashIcon } from "@/components/Icons";
 
 const schema: z.ZodSchema<NavigationFormData> = z.lazy(() =>
   z.object({
-    label: z.string().min(1, "Name is required"),
-    url: z.string().optional(),
+    label: z.string().min(1, "Nazwa jest wymagana"),
+    url: z
+      .string()
+      .transform((str) => str.trim())
+      .refine(
+        (val) => {
+          if (!val) return true;
+          try {
+            new URL(val);
+            return true;
+          } catch {
+            return false;
+          }
+        },
+        { message: "Nieprawidłowy format URL" },
+      ),
     children: z.array(schema).optional(),
   }),
 );
@@ -30,6 +44,7 @@ export default function NavigationForm({
   } = useForm<NavigationFormData>({
     resolver: zodResolver(schema),
     defaultValues: initialData,
+    mode: "onChange",
   });
 
   return (
@@ -57,9 +72,14 @@ export default function NavigationForm({
           <label className="block text-sm font-medium mb-1">Link</label>
           <input
             {...register("url")}
-            className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
-            placeholder="Wklej lub wyszukaj"
+            className={`w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500 ${
+              errors.url ? "border-red-500" : ""
+            }`}
+            placeholder="Wklej lub wyszukaj np. https://example.com"
           />
+          {errors.url && (
+            <span className="text-red-500 text-sm">{errors.url.message}</span>
+          )}
         </div>
         <div className="flex justify-end space-x-4 mt-6">
           <button

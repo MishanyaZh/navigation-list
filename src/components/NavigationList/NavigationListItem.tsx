@@ -52,13 +52,9 @@ export default function NavigationListItem({
             ⋮⋮
           </button>
           <div>
-            <p className="font-semibold text-gray-900 dark:text-gray-100">
-              {item.label}
-            </p>
+            <p className="font-semibold text-gray-900">{item.label}</p>
             {item.url && (
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                {item.url}
-              </p>
+              <p className="text-sm text-gray-500 mt-1">{item.url}</p>
             )}
           </div>
         </div>
