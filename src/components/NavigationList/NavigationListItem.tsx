@@ -1,8 +1,10 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { NavigationItem } from "@/types/navigation";
+import { DragIcon } from "../Icons";
 
 interface Props {
+  index?: number;
   item: NavigationItem;
   onEdit: (item: NavigationItem) => void;
   onRemove: (id: string) => void;
@@ -11,6 +13,7 @@ interface Props {
 }
 
 export default function NavigationListItem({
+  index,
   item,
   onEdit,
   onRemove,
@@ -33,15 +36,11 @@ export default function NavigationListItem({
   };
 
   return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      className={` ${child ? "space-y-3" : ""}`}
-    >
+    <div ref={setNodeRef} style={style} className={`${child ? "ml-12" : ""}`}>
       <div
-        className={`flex items-center justify-between p-4 border-b ${
-          child ? "border-l rounded-bl-md" : ""
-        } transition-colors`}
+        className={`flex items-center justify-between p-4 border-b border-[#D0D5DD] ${
+          child ? "border-l rounded-bl-md" : index === 0 ? "" : "border-t"
+        }`}
       >
         <div className="flex items-center gap-4">
           <button
@@ -49,7 +48,7 @@ export default function NavigationListItem({
             {...listeners}
             className="cursor-move p-2 hover:bg-gray-100 rounded text-gray-500"
           >
-            ⋮⋮
+            <DragIcon />
           </button>
           <div>
             <p className="font-semibold text-gray-900">{item.label}</p>
@@ -59,7 +58,7 @@ export default function NavigationListItem({
           </div>
         </div>
         <div
-          className="inline-flex rounded-md border border-[#D0D5DD] shadow-sm"
+          className="inline-flex rounded-md border border-[#D0D5DD] shadow-[0px_1px_2px_0px_#1018280D]"
           role="group"
         >
           <button
@@ -83,11 +82,11 @@ export default function NavigationListItem({
         </div>
       </div>
       {item.children && item.children.length > 0 && (
-        <div className="ml-12">
-          {item.children.map((child) => (
+        <div className="">
+          {item.children.map((childItem) => (
             <NavigationListItem
-              key={child.id}
-              item={child}
+              key={childItem.id}
+              item={childItem}
               onEdit={onEdit}
               onRemove={onRemove}
               onAddSubItem={onAddSubItem}
