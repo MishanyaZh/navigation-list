@@ -1,7 +1,9 @@
+"use client";
+
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { NavigationItem } from "@/types/navigation";
-import { DragIcon } from "../Icons";
+import { DragIcon } from "../IconComponents";
 
 interface Props {
   index?: number;

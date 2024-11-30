@@ -1,10 +1,10 @@
-import { AddIcon } from "../Icons";
+import { AddIcon } from "../IconComponents";
 
 interface Props {
-  onAddClick: () => void;
+  handleAddItem: () => void;
 }
 
-export default function EmptyState({ onAddClick }: Props) {
+export default function EmptyState({ handleAddItem }: Props) {
   return (
     <div className="text-center p-12 border border-border-secondary rounded-lg bg-background-secondary">
       <h3 className="text-base font-semibold text-text-primary mb-3">
@@ -14,7 +14,7 @@ export default function EmptyState({ onAddClick }: Props) {
         W tym menu nie ma jeszcze żadnych linków.
       </p>
       <button
-        onClick={onAddClick}
+        onClick={handleAddItem}
         className="inline-flex items-center gap-1.5 px-6 py-3 bg-button-primary-bg text-button-primary-fg rounded-lg hover:bg-button-primary-hover transition-colors text-base font-semibold shadow-custom"
       >
         <AddIcon width={20} />

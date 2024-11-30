@@ -1,8 +1,10 @@
+"use client";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { NavigationFormData } from "@/types/navigation";
-import { TrashIcon, SearchIcon } from "@/components/Icons";
+import { TrashIcon, SearchIcon } from "../IconComponents";
 
 const schema: z.ZodSchema<NavigationFormData> = z.lazy(() =>
   z.object({

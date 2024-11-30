@@ -20,6 +20,7 @@ export const AddIcon = ({ size = 20, ...props }: IconProps) => (
     />
   </svg>
 );
+
 export const TrashIcon = ({ size = 20, ...props }: IconProps) => (
   <svg
     width={size}
