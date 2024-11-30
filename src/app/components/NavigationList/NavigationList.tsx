@@ -51,7 +51,7 @@ export default function NavigationList({ items, onReorder, ...props }: Props) {
       <div className="py-5 pl-6 bg-background-secondary rounded-b-md border-t border-border-primary">
         <button
           onClick={props.onAddItem}
-          className="px-4 py-2 text-sm font-semibold text-text-secondary bg-background-default border border-border-primary rounded-md hover:bg-background-secondary focus:ring-2 focus:ring-button-primary-action shadow-custom"
+          className="px-4 py-2 text-sm font-semibold text-text-secondary bg-background-default border border-border-primary rounded-md hover:bg-background-secondary shadow-custom"
         >
           Dodaj pozycję menu
         </button>

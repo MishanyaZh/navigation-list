@@ -75,13 +75,13 @@ export default function NavigationListItem({
           </button>
           <button
             onClick={() => onEdit(item)}
-            className="px-4 py-2 text-sm font-medium text-gray-700 bg-background-default border-r border-border-primary hover:bg-gray-50 focus:z-10 focus:ring-2 focus:ring-gray-300"
+            className="px-4 py-2 text-sm font-semibold text-text-secondary bg-background-default border-r border-border-primary hover:bg-background-secondary"
           >
             Edytuj
           </button>
           <button
             onClick={() => onAddSubItem(item.id)}
-            className="px-4 py-2 text-sm font-medium text-gray-700 bg-background-default rounded-r-md hover:bg-gray-50 focus:z-10 focus:ring-2 focus:ring-gray-300"
+            className="px-4 py-2 text-sm font-semibold text-text-secondary bg-background-default rounded-r-md hover:bg-background-secondary"
           >
             Dodaj pozycję menu
           </button>
