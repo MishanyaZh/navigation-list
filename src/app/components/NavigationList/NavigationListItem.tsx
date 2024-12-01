@@ -112,7 +112,7 @@ export default function NavigationListItem({
         </div>
       </div>
 
-      {(editingItem?.id === item.id || (isAddingSubItem && !editingItem)) && (
+      {(editingItem?.id === item.id || isAddingSubItem) && (
         <NavigationForm
           initialData={editingItem?.id === item.id ? editingItem : undefined}
           onSubmit={handleFormSubmit}

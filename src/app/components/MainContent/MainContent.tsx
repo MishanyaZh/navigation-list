@@ -20,6 +20,7 @@ export default function MainContent() {
     handleAddSubItem,
     handleFormSubmit,
     handleFormClose,
+    parentId,
   } = useNavigationState();
 
   useEffect(() => {
@@ -59,6 +60,7 @@ export default function MainContent() {
           editingItem={editingItem}
           onFormSubmit={handleFormSubmit}
           onFormClose={handleFormClose}
+          parentId={parentId}
         />
       </div>
     </div>

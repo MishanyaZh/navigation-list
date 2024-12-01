@@ -21,6 +21,7 @@ interface Props {
   editingItem: NavigationItem | null;
   onFormSubmit: (data: NavigationFormData) => void;
   onFormClose: () => void;
+  parentId?: string | null;
 }
 
 export default function NavigationList({ items, onReorder, ...props }: Props) {
@@ -40,7 +41,7 @@ export default function NavigationList({ items, onReorder, ...props }: Props) {
         </SortableContext>
       </DndContext>
 
-      {props.showForm && !props.editingItem && (
+      {props.showForm && !props.editingItem && !props.parentId && (
         <NavigationForm
           initialData={props.editingItem || undefined}
           onSubmit={props.onFormSubmit}
