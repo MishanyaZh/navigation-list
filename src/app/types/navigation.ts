@@ -6,7 +6,7 @@ export interface NavigationItem {
 }
 
 export interface NavigationFormData {
+  id?: string;
   label: string;
   url?: string;
-  children?: NavigationFormData[];
 }

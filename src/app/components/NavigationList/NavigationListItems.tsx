@@ -15,13 +15,8 @@ interface Props {
 export default function NavigationListItems({ items, ...props }: Props) {
   return (
     <div>
-      {items.map((item, index) => (
-        <NavigationListItem
-          key={item.id}
-          index={index}
-          item={item}
-          {...props}
-        />
+      {items.map((item) => (
+        <NavigationListItem key={item.id} item={item} {...props} />
       ))}
     </div>
   );

@@ -1,4 +1,6 @@
-import { useState } from 'react';
+"use client";
+
+import { useState, useEffect, useCallback } from 'react';
 import { NavigationItem, NavigationFormData } from '../types/navigation';
 import { addItemToTree, removeItemFromTree, updateItemInTree } from '../utils/navigationTree';
 
@@ -7,22 +9,44 @@ export function useNavigationState() {
   const [editingItem, setEditingItem] = useState<NavigationItem | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [parentId, setParentId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('navigationItems');
+      if (saved) {
+        setItems(JSON.parse(saved));
+      }
+    } catch (error) {
+      console.error('Failed to load navigation items:', error);
+    }
+  }, []);
+
+  const persistItems = useCallback((newItems: NavigationItem[]) => {
+    setItems(newItems);
+    localStorage.setItem('navigationItems', JSON.stringify(newItems));
+  }, []);
 
   const handleAdd = (data: NavigationFormData) => {
-    const newItem = { ...data, id: crypto.randomUUID() } as NavigationItem;
+    try {
+      const newItem = { ...data, id: crypto.randomUUID() } as NavigationItem;
 
-    if (parentId) {
-      setItems((prevItems) => addItemToTree(prevItems, parentId, newItem));
-    } else {
-      setItems((prevItems) => [...prevItems, newItem]);
+      if (parentId) {
+        persistItems(addItemToTree(items, parentId, newItem));
+      } else {
+        persistItems([...items, newItem]);
+      }
+
+      setShowForm(false);
+      setParentId(null);
+      setError(null);
+    } catch {
+      setError('Failed to add item');
     }
-
-    setShowForm(false);
-    setParentId(null);
   };
 
   const handleRemove = (id: string) => {
-    setItems((prevItems) => removeItemFromTree(prevItems, id));
+    persistItems(removeItemFromTree(items, id));
   };
 
   const handleAddSubItem = (parentId: string) => {
@@ -32,9 +56,7 @@ export function useNavigationState() {
 
   const handleFormSubmit = (data: NavigationFormData) => {
     if (editingItem) {
-      setItems((prevItems) =>
-        updateItemInTree(prevItems, editingItem.id, data as NavigationItem)
-      );
+      persistItems(updateItemInTree(items, editingItem.id, data as NavigationItem));
       setEditingItem(null);
     } else {
       handleAdd(data);
@@ -59,5 +81,7 @@ export function useNavigationState() {
     handleAddSubItem,
     handleFormSubmit,
     handleFormClose,
+    error,
+    setError,
   };
 }

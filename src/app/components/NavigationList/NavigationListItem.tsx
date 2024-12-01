@@ -6,7 +6,6 @@ import { NavigationItem } from "@/types/navigation";
 import { DragIcon } from "../IconComponents";
 
 interface Props {
-  index?: number;
   item: NavigationItem;
   onEdit: (item: NavigationItem) => void;
   onRemove: (id: string) => void;
@@ -15,7 +14,6 @@ interface Props {
 }
 
 export default function NavigationListItem({
-  index,
   item,
   onEdit,
   onRemove,
@@ -38,10 +36,10 @@ export default function NavigationListItem({
   };
 
   return (
-    <div ref={setNodeRef} style={style} className={`${child ? "ml-12" : ""}`}>
+    <div ref={setNodeRef} style={style} className={`${child ? "ml-16" : ""}`}>
       <div
-        className={`flex items-center justify-between p-4 border-b border-border-primary ${
-          child ? "border-l rounded-bl-md" : index === 0 ? "" : "border-t"
+        className={`flex items-center justify-between p-4 border border-border-primary ${
+          child ? "border-l rounded-md" : "rounded-md"
         }`}
       >
         <div className="flex items-center gap-4">

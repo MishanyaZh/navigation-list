@@ -1,11 +1,14 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import NavigationList from "@/components/NavigationList/NavigationList";
 import EmptyState from "@/components/EmptyState/EmptyState";
 import NavigationForm from "@/components/NavigationForm/NavigationForm";
+import Loading from "@/loading";
 import { useNavigationState } from "@/hooks/useNavigationState";
 
 export default function MainContent() {
+  const [mounted, setMounted] = useState(false);
   const {
     items,
     editingItem,
@@ -18,6 +21,14 @@ export default function MainContent() {
     handleFormSubmit,
     handleFormClose,
   } = useNavigationState();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <Loading />;
+  }
 
   if (items.length === 0) {
     return (

@@ -16,6 +16,7 @@ const schema: z.ZodSchema<NavigationFormData> = z.lazy(() =>
         (val) => {
           if (!val) return true;
           try {
+            if (val.startsWith("/")) return true;
             new URL(val);
             return true;
           } catch {
