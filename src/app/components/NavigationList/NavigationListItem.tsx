@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { NavigationItem } from "@/types/navigation";
+import { NavigationFormData, NavigationItem } from "@/types/navigation";
 import { DragIcon } from "../IconComponents";
+import NavigationForm from "../NavigationForm/NavigationForm";
 
 interface Props {
   item: NavigationItem;
@@ -11,6 +13,9 @@ interface Props {
   onRemove: (id: string) => void;
   onAddSubItem: (parentId: string) => void;
   child?: boolean;
+  editingItem: NavigationItem | null;
+  onFormSubmit: (data: NavigationFormData) => void;
+  onFormClose: () => void;
 }
 
 export default function NavigationListItem({
@@ -19,7 +24,12 @@ export default function NavigationListItem({
   onRemove,
   onAddSubItem,
   child,
+  editingItem,
+  onFormSubmit,
+  onFormClose,
 }: Props) {
+  const [isAddingSubItem, setIsAddingSubItem] = useState(false);
+
   const {
     attributes,
     listeners,
@@ -33,6 +43,22 @@ export default function NavigationListItem({
     transform: CSS.Transform.toString(transform),
     transition,
     opacity: isDragging ? 0.5 : 1,
+  };
+
+  const handleAddSubItem = (parentId: string) => {
+    setIsAddingSubItem(true);
+    onAddSubItem(parentId);
+  };
+
+  const handleFormClose = () => {
+    setIsAddingSubItem(false);
+    onFormClose();
+  };
+
+  const handleFormSubmit = (data: NavigationFormData) => {
+    onFormSubmit(data);
+    onFormClose();
+    setIsAddingSubItem(false);
   };
 
   return (
@@ -78,13 +104,22 @@ export default function NavigationListItem({
             Edytuj
           </button>
           <button
-            onClick={() => onAddSubItem(item.id)}
+            onClick={() => handleAddSubItem(item.id)}
             className="px-4 py-2 text-sm font-semibold text-text-secondary bg-background-default rounded-r-md hover:bg-background-secondary"
           >
             Dodaj pozycję menu
           </button>
         </div>
       </div>
+
+      {(editingItem?.id === item.id || (isAddingSubItem && !editingItem)) && (
+        <NavigationForm
+          initialData={editingItem?.id === item.id ? editingItem : undefined}
+          onSubmit={handleFormSubmit}
+          onClose={handleFormClose}
+        />
+      )}
+
       {item.children && item.children.length > 0 && (
         <div className="">
           {item.children.map((childItem) => (
@@ -95,6 +130,9 @@ export default function NavigationListItem({
               onRemove={onRemove}
               onAddSubItem={onAddSubItem}
               child={true}
+              editingItem={editingItem}
+              onFormSubmit={onFormSubmit}
+              onFormClose={onFormClose}
             />
           ))}
         </div>

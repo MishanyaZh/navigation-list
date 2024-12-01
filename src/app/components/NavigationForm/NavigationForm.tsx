@@ -103,7 +103,7 @@ export default function NavigationForm({
             type="submit"
             className="px-4 py-2 text-sm font-semibold text-button-primary-action bg-white border border-border-primary rounded-md hover:bg-background-secondary shadow-custom"
           >
-            Dodaj
+            {initialData ? "Zapisz" : "Dodaj"}
           </button>
         </div>
       </form>

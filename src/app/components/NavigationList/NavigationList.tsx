@@ -40,7 +40,7 @@ export default function NavigationList({ items, onReorder, ...props }: Props) {
         </SortableContext>
       </DndContext>
 
-      {(props.showForm || props.editingItem) && (
+      {props.showForm && !props.editingItem && (
         <NavigationForm
           initialData={props.editingItem || undefined}
           onSubmit={props.onFormSubmit}
