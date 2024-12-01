@@ -47,7 +47,7 @@ export default function MainContent() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-8">
+    <div className="max-w-full mx-auto p-8">
       <div className="grid grid-cols-1 gap-8">
         <NavigationList
           items={items}
