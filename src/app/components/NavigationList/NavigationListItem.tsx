@@ -62,13 +62,13 @@ export default function NavigationListItem({
   };
 
   return (
-    <div ref={setNodeRef} style={style} className={`${child ? 'ml-16' : ''}`}>
+    <div ref={setNodeRef} style={style} className={`${child ? 'pl-16' : ''}`}>
       <div
-        className={`flex items-center justify-between p-4 border border-border-primary ${
+        className={`min-w-[400px] flex items-center justify-between p-4 border border-border-primary ${
           child ? 'border-l rounded-md' : 'rounded-md'
         }`}
       >
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 min-w-0 flex-1">
           <button
             {...attributes}
             {...listeners}
@@ -76,19 +76,19 @@ export default function NavigationListItem({
           >
             <DragIcon />
           </button>
-          <div>
-            <p className="text-sm font-semibold text-text-primary">
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-semibold text-text-primary truncate">
               {item.label}
             </p>
             {item.url && (
-              <p className="text-sm font-normal text-text-tertiary mt-1">
+              <p className="text-sm font-normal text-text-tertiary mt-1 truncate">
                 {item.url}
               </p>
             )}
           </div>
         </div>
         <div
-          className="inline-flex rounded-md border border-border-primary shadow-custom"
+          className="flex-shrink-0 inline-flex rounded-md border border-border-primary shadow-custom"
           role="group"
         >
           <button
@@ -121,7 +121,7 @@ export default function NavigationListItem({
       )}
 
       {item.children && item.children.length > 0 && (
-        <div className="">
+        <div className="overflow-x-auto">
           {item.children.map(childItem => (
             <NavigationListItem
               key={childItem.id}
