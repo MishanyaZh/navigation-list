@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { DndContext, pointerWithin } from "@dnd-kit/core";
+import { DndContext, pointerWithin } from '@dnd-kit/core';
 import {
   SortableContext,
   verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import { NavigationItem, NavigationFormData } from "@/types/navigation";
-import NavigationForm from "../NavigationForm/NavigationForm";
-import NavigationListItems from "./NavigationListItems";
-import { useDragAndDrop } from "@/hooks/useDragAndDrop";
+} from '@dnd-kit/sortable';
+import { NavigationItem, NavigationFormData } from '@/types/navigation';
+import NavigationForm from '../NavigationForm/NavigationForm';
+import NavigationListItems from './NavigationListItems';
+import { useDragAndDrop } from '@/hooks/useDragAndDrop';
 
 interface Props {
   items: NavigationItem[];
@@ -31,7 +31,7 @@ export default function NavigationList({ items, onReorder, ...props }: Props) {
     <div className="bg-background-default border border-border-primary rounded-md overflow-hidden">
       <DndContext
         collisionDetection={pointerWithin}
-        onDragEnd={(e) => handleDragEnd(e, items)}
+        onDragEnd={e => handleDragEnd(e, items)}
       >
         <SortableContext
           items={getAllIds(items)}

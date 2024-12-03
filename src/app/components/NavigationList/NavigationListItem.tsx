@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
-import { NavigationFormData, NavigationItem } from "@/types/navigation";
-import { DragIcon } from "../IconComponents";
-import NavigationForm from "../NavigationForm/NavigationForm";
+import { useState } from 'react';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+import { NavigationFormData, NavigationItem } from '@/types/navigation';
+import { DragIcon } from '../IconComponents';
+import NavigationForm from '../NavigationForm/NavigationForm';
 
 interface Props {
   item: NavigationItem;
@@ -62,10 +62,10 @@ export default function NavigationListItem({
   };
 
   return (
-    <div ref={setNodeRef} style={style} className={`${child ? "ml-16" : ""}`}>
+    <div ref={setNodeRef} style={style} className={`${child ? 'ml-16' : ''}`}>
       <div
         className={`flex items-center justify-between p-4 border border-border-primary ${
-          child ? "border-l rounded-md" : "rounded-md"
+          child ? 'border-l rounded-md' : 'rounded-md'
         }`}
       >
         <div className="flex items-center gap-4">
@@ -122,7 +122,7 @@ export default function NavigationListItem({
 
       {item.children && item.children.length > 0 && (
         <div className="">
-          {item.children.map((childItem) => (
+          {item.children.map(childItem => (
             <NavigationListItem
               key={childItem.id}
               item={childItem}

@@ -1,8 +1,12 @@
-"use client";
+'use client';
 
 import { useState, useEffect, useCallback } from 'react';
 import { NavigationItem, NavigationFormData } from '../types/navigation';
-import { addItemToTree, removeItemFromTree, updateItemInTree } from '../utils/navigationTree';
+import {
+  addItemToTree,
+  removeItemFromTree,
+  updateItemInTree,
+} from '../utils/navigationTree';
 
 export function useNavigationState() {
   const [items, setItems] = useState<NavigationItem[]>([]);
@@ -56,7 +60,9 @@ export function useNavigationState() {
 
   const handleFormSubmit = (data: NavigationFormData) => {
     if (editingItem) {
-      persistItems(updateItemInTree(items, editingItem.id, data as NavigationItem));
+      persistItems(
+        updateItemInTree(items, editingItem.id, data as NavigationItem)
+      );
       setEditingItem(null);
     } else {
       handleAdd(data);
@@ -83,6 +89,6 @@ export function useNavigationState() {
     handleFormClose,
     error,
     setError,
-    parentId
+    parentId,
   };
 }

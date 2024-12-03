@@ -1,11 +1,11 @@
-import { NavigationItem } from "../types/navigation";
+import { NavigationItem } from '../types/navigation';
 
 export const addItemToTree = (
   items: NavigationItem[],
   parentId: string,
-  newItem: NavigationItem,
+  newItem: NavigationItem
 ): NavigationItem[] => {
-  return items.map((item) => {
+  return items.map(item => {
     if (item.id === parentId) {
       return {
         ...item,
@@ -24,9 +24,9 @@ export const addItemToTree = (
 
 export const removeItemFromTree = (
   items: NavigationItem[],
-  id: string,
+  id: string
 ): NavigationItem[] => {
-  return items.filter((item) => {
+  return items.filter(item => {
     if (item.id === id) return false;
     if (item.children) {
       item.children = removeItemFromTree(item.children, id);
@@ -38,9 +38,9 @@ export const removeItemFromTree = (
 export const updateItemInTree = (
   items: NavigationItem[],
   id: string,
-  newData: NavigationItem,
+  newData: NavigationItem
 ): NavigationItem[] => {
-  return items.map((item) => {
+  return items.map(item => {
     if (item.id === id) {
       return { ...newData, id: item.id, children: item.children };
     }

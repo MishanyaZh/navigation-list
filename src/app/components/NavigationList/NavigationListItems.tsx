@@ -1,5 +1,5 @@
-import { NavigationFormData, NavigationItem } from "@/types/navigation";
-import NavigationListItem from "./NavigationListItem";
+import { NavigationFormData, NavigationItem } from '@/types/navigation';
+import NavigationListItem from './NavigationListItem';
 
 interface Props {
   items: NavigationItem[];
@@ -15,7 +15,7 @@ interface Props {
 export default function NavigationListItems({ items, ...props }: Props) {
   return (
     <div>
-      {items.map((item) => (
+      {items.map(item => (
         <NavigationListItem key={item.id} item={item} {...props} />
       ))}
     </div>

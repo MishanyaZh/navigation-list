@@ -1,9 +1,8 @@
-import { DragEndEvent } from "@dnd-kit/core";
-import { arrayMove } from "@dnd-kit/sortable";
-import { NavigationItem } from "@/types/navigation";
+import { DragEndEvent } from '@dnd-kit/core';
+import { arrayMove } from '@dnd-kit/sortable';
+import { NavigationItem } from '@/types/navigation';
 
 export function useDragAndDrop(onReorder: (items: NavigationItem[]) => void) {
-
   const getAllIds = (items: NavigationItem[]): string[] => {
     return items.reduce((acc: string[], item) => {
       acc.push(item.id);
@@ -23,9 +22,12 @@ export function useDragAndDrop(onReorder: (items: NavigationItem[]) => void) {
     }, []);
   };
 
-  const findParent = (items: NavigationItem[], childId: string): NavigationItem | null => {
+  const findParent = (
+    items: NavigationItem[],
+    childId: string
+  ): NavigationItem | null => {
     for (const item of items) {
-      if (item.children?.some((child) => child.id === childId)) {
+      if (item.children?.some(child => child.id === childId)) {
         return item;
       }
       if (item.children) {
@@ -43,39 +45,43 @@ export function useDragAndDrop(onReorder: (items: NavigationItem[]) => void) {
       return;
     }
 
-    const reorderItems = (items: NavigationItem[], activeId: string, overId: string) => {
+    const reorderItems = (
+      items: NavigationItem[],
+      activeId: string,
+      overId: string
+    ) => {
       const activeParent = findParent(items, activeId);
       const overParent = findParent(items, overId);
 
       if (!activeParent && !overParent) {
-        const oldIndex = items.findIndex((item) => item.id === activeId);
-        const newIndex = items.findIndex((item) => item.id === overId);
+        const oldIndex = items.findIndex(item => item.id === activeId);
+        const newIndex = items.findIndex(item => item.id === overId);
         return arrayMove(items, oldIndex, newIndex);
       }
 
       const result = [...items];
-      const activeItem = flattenTree(items).find((item) => item.id === activeId);
-      const overItem = flattenTree(items).find((item) => item.id === overId);
+      const activeItem = flattenTree(items).find(item => item.id === activeId);
+      const overItem = flattenTree(items).find(item => item.id === overId);
 
       if (!activeItem || !overItem) return items;
 
       if (activeParent) {
         activeParent.children = activeParent.children?.filter(
-          (child) => child.id !== activeId
+          child => child.id !== activeId
         );
       } else {
-        const index = result.findIndex((item) => item.id === activeId);
+        const index = result.findIndex(item => item.id === activeId);
         if (index !== -1) result.splice(index, 1);
       }
 
       if (overParent) {
         if (!overParent.children) overParent.children = [];
         const overIndex = overParent.children.findIndex(
-          (child) => child.id === overId
+          child => child.id === overId
         );
         overParent.children.splice(overIndex, 0, activeItem);
       } else {
-        const overIndex = result.findIndex((item) => item.id === overId);
+        const overIndex = result.findIndex(item => item.id === overId);
         result.splice(overIndex, 0, activeItem);
       }
 

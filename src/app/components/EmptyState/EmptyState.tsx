@@ -1,4 +1,4 @@
-import { AddIcon } from "../IconComponents";
+import { AddIcon } from '../IconComponents';
 
 interface Props {
   handleAddItem: () => void;

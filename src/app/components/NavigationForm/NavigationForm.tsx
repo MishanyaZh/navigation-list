@@ -1,32 +1,32 @@
-"use client";
+'use client';
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { NavigationFormData } from "@/types/navigation";
-import { TrashIcon, SearchIcon } from "../IconComponents";
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { NavigationFormData } from '@/types/navigation';
+import { TrashIcon, SearchIcon } from '../IconComponents';
 
 const schema: z.ZodSchema<NavigationFormData> = z.lazy(() =>
   z.object({
-    label: z.string().min(1, "Nazwa jest wymagana"),
+    label: z.string().min(1, 'Nazwa jest wymagana'),
     url: z
       .string()
-      .transform((str) => str.trim())
+      .transform(str => str.trim())
       .refine(
-        (val) => {
+        val => {
           if (!val) return true;
           try {
-            if (val.startsWith("/")) return true;
+            if (val.startsWith('/')) return true;
             new URL(val);
             return true;
           } catch {
             return false;
           }
         },
-        { message: "Nieprawidłowy format URL" },
+        { message: 'Nieprawidłowy format URL' }
       ),
     children: z.array(schema).optional(),
-  }),
+  })
 );
 
 interface Props {
@@ -47,7 +47,7 @@ export default function NavigationForm({
   } = useForm<NavigationFormData>({
     resolver: zodResolver(schema),
     defaultValues: initialData,
-    mode: "onChange",
+    mode: 'onChange',
   });
 
   return (
@@ -65,7 +65,7 @@ export default function NavigationForm({
             Nazwa
           </label>
           <input
-            {...register("label")}
+            {...register('label')}
             className="w-full p-2 border border-border-primary rounded text-base font-normal placeholder-text-placeholder focus:outline-none focus:ring-2 focus:ring-button-primary-bg shadow-custom"
             placeholder="np. Promocje"
           />
@@ -79,9 +79,9 @@ export default function NavigationForm({
           </label>
           <div className="relative">
             <input
-              {...register("url")}
+              {...register('url')}
               className={`w-full pl-10 p-2 border border-border-primary rounded text-base font-normal placeholder-text-placeholder focus:outline-none focus:ring-2 focus:ring-button-primary-bg  shadow-custom ${
-                errors.url ? "border-red-500" : ""
+                errors.url ? 'border-red-500' : ''
               }`}
               placeholder="Wklej lub wyszukaj"
             />
@@ -103,7 +103,7 @@ export default function NavigationForm({
             type="submit"
             className="px-4 py-2 text-sm font-semibold text-button-primary-action bg-white border border-border-primary rounded-md hover:bg-background-secondary shadow-custom"
           >
-            {initialData ? "Zapisz" : "Dodaj"}
+            {initialData ? 'Zapisz' : 'Dodaj'}
           </button>
         </div>
       </form>
