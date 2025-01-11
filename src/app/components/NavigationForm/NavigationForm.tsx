@@ -51,7 +51,7 @@ export default function NavigationForm({
   });
 
   return (
-    <div className="bg-background-default border border-border-primary rounded-md p-6 mx-6 my-4 relative">
+    <div className="glass-card p-6 mx-6 my-4 relative animate-scale">
       <button
         onClick={onClose}
         className="absolute right-4 top-4 text-text-tertiary hover:text-text-secondary"
@@ -95,13 +95,13 @@ export default function NavigationForm({
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 text-sm font-semibold text-button-secondary-fg bg-white border border-border-primary rounded-md hover:bg-background-secondary shadow-custom"
+            className="button-hover px-4 py-2 text-sm font-semibold text-button-secondary-fg glass-card rounded-md"
           >
             Anuluj
           </button>
           <button
             type="submit"
-            className="px-4 py-2 text-sm font-semibold text-button-primary-action bg-white border border-border-primary rounded-md hover:bg-background-secondary shadow-custom"
+            className="button-hover px-4 py-2 text-sm font-semibold text-button-primary-bg glass-card rounded-md"
           >
             {initialData ? 'Zapisz' : 'Dodaj'}
           </button>

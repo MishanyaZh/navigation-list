@@ -12,6 +12,8 @@ export default {
         background: {
           default: '#FFFFFF',
           secondary: '#F9FAFB',
+          gradient: 'linear-gradient(135deg, #f6f8fc 0%, #e9eef8 100%)',
+          glass: 'rgba(255, 255, 255, 0.7)',
         },
         text: {
           primary: '#101828',
@@ -35,7 +37,9 @@ export default {
         },
       },
       boxShadow: {
-        custom: '0px 1px 2px 0px #1018280D',
+        custom: '0px 4px 15px rgba(0, 0, 0, 0.08)',
+        hover: '0px 8px 20px rgba(0, 0, 0, 0.12)',
+        glow: '0 0 15px rgba(127, 86, 217, 0.3)',
       },
       fontSize: {
         sm: '14px',
@@ -48,6 +52,25 @@ export default {
       },
       fontFamily: {
         sans: ['var(--font-inter)'],
+      },
+      animation: {
+        'fade-in': 'fadeIn 0.4s ease-out',
+        'slide-up': 'slideUp 0.5s ease-out',
+        'scale': 'scale 0.3s ease-out',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        scale: {
+          '0%': { transform: 'scale(0.95)' },
+          '100%': { transform: 'scale(1)' },
+        },
       },
     },
   },

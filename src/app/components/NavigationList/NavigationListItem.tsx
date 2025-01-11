@@ -63,11 +63,15 @@ export default function NavigationListItem({
   };
 
   return (
-    <div ref={setNodeRef} style={style} className={`${child ? 'pl-16' : ''}`}>
+    <div
+      ref={setNodeRef}
+      style={style}
+      className={`${child ? 'pl-16' : ''} animate-fade-in`}
+    >
       <div
-        className={`min-w-[400px] flex items-center justify-between p-4 border border-border-primary ${
+        className={`min-w-[400px] flex items-center justify-between p-4 glass-card ${
           child ? 'border-l rounded-md' : 'rounded-md'
-        }`}
+        } transform transition-all duration-300 hover:shadow-hover hover:-translate-y-1`}
       >
         <div className="flex items-center gap-4 min-w-0 flex-1">
           <button
@@ -119,11 +123,13 @@ export default function NavigationListItem({
       </div>
 
       {(editingItem?.id === item.id || isAddingSubItem) && (
-        <NavigationForm
-          initialData={editingItem?.id === item.id ? editingItem : undefined}
-          onSubmit={handleFormSubmit}
-          onClose={handleFormClose}
-        />
+        <div className="animate-slide-up">
+          <NavigationForm
+            initialData={editingItem?.id === item.id ? editingItem : undefined}
+            onSubmit={handleFormSubmit}
+            onClose={handleFormClose}
+          />
+        </div>
       )}
 
       {item.children && item.children.length > 0 && (

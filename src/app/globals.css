@@ -4,10 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
+body {
+  background: linear-gradient(135deg, #f6f8fc 0%, #e9eef8 100%);
+  min-height: 100vh;
 }
 
-body {
-  background: var(--background);
+.glass-card {
+  @apply backdrop-blur-sm bg-background-glass border border-white/20 shadow-custom;
+}
+
+.button-hover {
+  @apply transition-all duration-300 hover:shadow-hover hover:scale-[1.02];
 }
