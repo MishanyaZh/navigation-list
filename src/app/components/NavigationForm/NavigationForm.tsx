@@ -67,7 +67,7 @@ export default function NavigationForm({
           <input
             {...register('label')}
             className="w-full p-2 border border-border-primary rounded text-base font-normal placeholder-text-placeholder focus:outline-none focus:ring-2 focus:ring-button-primary-bg shadow-custom"
-            placeholder="np. Promocje"
+            placeholder="Nazwa pozycji"
           />
           {errors.label && (
             <span className="text-red-500 text-sm">{errors.label.message}</span>
@@ -83,7 +83,7 @@ export default function NavigationForm({
               className={`w-full pl-10 p-2 border border-border-primary rounded text-base font-normal placeholder-text-placeholder focus:outline-none focus:ring-2 focus:ring-button-primary-bg  shadow-custom ${
                 errors.url ? 'border-red-500' : ''
               }`}
-              placeholder="Wklej lub wyszukaj"
+              placeholder="Wklej link"
             />
             <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
           </div>

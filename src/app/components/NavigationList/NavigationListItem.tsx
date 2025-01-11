@@ -6,6 +6,7 @@ import { CSS } from '@dnd-kit/utilities';
 import { NavigationFormData, NavigationItem } from '@/types/navigation';
 import { DragIcon } from '../IconComponents';
 import NavigationForm from '../NavigationForm/NavigationForm';
+import Link from 'next/link';
 
 interface Props {
   item: NavigationItem;
@@ -81,9 +82,14 @@ export default function NavigationListItem({
               {item.label}
             </p>
             {item.url && (
-              <p className="text-sm font-normal text-text-tertiary mt-1 truncate">
+              <Link
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-normal text-text-tertiary hover:text-blue-600 mt-1 truncate block"
+              >
                 {item.url}
-              </p>
+              </Link>
             )}
           </div>
         </div>
