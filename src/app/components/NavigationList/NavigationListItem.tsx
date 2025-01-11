@@ -40,10 +40,14 @@ export default function NavigationListItem({
     isDragging,
   } = useSortable({ id: item.id });
 
-  const style = {
+  const style: React.CSSProperties = {
     transform: CSS.Transform.toString(transform),
     transition,
     opacity: isDragging ? 0.5 : 1,
+    touchAction: 'none',
+    userSelect: 'none',
+    WebkitUserSelect: 'none',
+    WebkitTapHighlightColor: 'transparent',
   };
 
   const handleAddSubItem = (parentId: string) => {
@@ -66,7 +70,7 @@ export default function NavigationListItem({
     <div
       ref={setNodeRef}
       style={style}
-      className={`${child ? 'pl-16' : ''} animate-fade-in`}
+      className={`${child ? 'pl-16' : ''} animate-fade-in touch-manipulation select-none`}
     >
       <div
         className={`min-w-[400px] flex items-center justify-between p-4 glass-card ${

@@ -1,6 +1,14 @@
 'use client';
 
-import { DndContext, pointerWithin } from '@dnd-kit/core';
+import {
+  DndContext,
+  pointerWithin,
+  TouchSensor,
+  MouseSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from '@dnd-kit/core';
 import {
   SortableContext,
   verticalListSortingStrategy,
@@ -27,11 +35,38 @@ interface Props {
 export default function NavigationList({ items, onReorder, ...props }: Props) {
   const { getAllIds, handleDragEnd } = useDragAndDrop(onReorder);
 
+  const mouseSensor = useSensor(MouseSensor, {
+    activationConstraint: {
+      distance: 10,
+    },
+  });
+
+  const touchSensor = useSensor(TouchSensor, {
+    activationConstraint: {
+      delay: 200,
+      tolerance: 8,
+      pressure: 0.3,
+    },
+  });
+
+  const sensors = useSensors(mouseSensor, touchSensor);
+
   return (
     <div className="bg-background-default border border-border-primary rounded-md overflow-hidden">
       <DndContext
+        sensors={sensors}
         collisionDetection={pointerWithin}
-        onDragEnd={e => handleDragEnd(e, items)}
+        onDragStart={() => {
+          if (window.navigator.vibrate) {
+            window.navigator.vibrate(100);
+          }
+        }}
+        onDragEnd={(e: DragEndEvent) => {
+          handleDragEnd(e, items);
+          if (window.navigator.vibrate) {
+            window.navigator.vibrate([50]);
+          }
+        }}
       >
         <SortableContext
           items={getAllIds(items)}
