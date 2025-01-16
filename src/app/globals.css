@@ -10,7 +10,7 @@ body {
 }
 
 .glass-card {
-  @apply backdrop-blur-sm bg-background-glass border border-white/20 shadow-custom;
+  @apply backdrop-blur-sm bg-background-glass border border-border-primary shadow-custom;
 }
 
 .button-hover {

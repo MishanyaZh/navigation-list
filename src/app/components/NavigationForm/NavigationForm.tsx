@@ -51,7 +51,7 @@ export default function NavigationForm({
   });
 
   return (
-    <div className="glass-card p-6 mx-6 my-4 relative animate-scale">
+    <div className="glass-card p-4 md:p-6 mx-4 md:mx-6 my-4 relative animate-scale max-w-full md:w-auto border border-border-primary">
       <button
         onClick={onClose}
         className="absolute right-4 top-4 text-text-tertiary hover:text-text-secondary"

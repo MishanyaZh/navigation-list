@@ -14,7 +14,7 @@ interface Props {
 
 export default function NavigationListItems({ items, ...props }: Props) {
   return (
-    <div>
+    <div className="w-full md:w-auto">
       {items.map(item => (
         <NavigationListItem key={item.id} item={item} {...props} />
       ))}

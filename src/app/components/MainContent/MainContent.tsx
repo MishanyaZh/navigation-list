@@ -33,7 +33,7 @@ export default function MainContent() {
 
   if (items.length === 0) {
     return (
-      <div className="min-w-[700px] max-w-full mx-auto p-8">
+      <div className="min-w-full md:min-w-[700px] max-w-full mx-auto p-8 border border-border-primary">
         {showForm ? (
           <NavigationForm
             onSubmit={handleFormSubmit}
@@ -47,7 +47,7 @@ export default function MainContent() {
   }
 
   return (
-    <div className="min-w-[700px] max-w-full mx-auto p-8">
+    <div className="min-w-full md:min-w-[700px] max-w-full mx-auto p-8 border border-border-primary">
       <div className="grid grid-cols-1 gap-8">
         <NavigationList
           items={items}

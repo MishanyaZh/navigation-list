@@ -6,7 +6,7 @@ interface Props {
 
 export default function EmptyState({ handleAddItem }: Props) {
   return (
-    <div className="text-center p-12 border border-border-secondary rounded-lg bg-background-secondary">
+    <div className="text-center p-12 border border-border-primary rounded-lg bg-background-secondary w-full md:w-auto">
       <h3 className="text-base font-semibold text-text-primary mb-3">
         Stwórz własną nawigację
       </h3>

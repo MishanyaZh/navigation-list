@@ -70,14 +70,16 @@ export default function NavigationListItem({
     <div
       ref={setNodeRef}
       style={style}
-      className={`${child ? 'pl-16' : ''} animate-fade-in touch-manipulation select-none`}
+      className={`${
+        child ? 'pl-[3%] md:pl-16' : ''
+      } animate-fade-in touch-manipulation select-none`}
     >
       <div
-        className={`min-w-[400px] flex items-center justify-between p-4 glass-card ${
-          child ? 'border-l rounded-md' : 'rounded-md'
+        className={`w-full md:w-auto flex flex-col md:flex-row items-start md:items-center gap-3 justify-between p-4 glass-card ${
+          child ? 'border-l border-border-primary rounded-md' : 'rounded-md'
         } transform transition-all duration-300 hover:shadow-hover hover:-translate-y-1`}
       >
-        <div className="flex items-center gap-4 min-w-0 flex-1">
+        <div className="flex items-center gap-4 min-w-0 flex-1 w-full">
           <button
             {...attributes}
             {...listeners}
@@ -85,7 +87,7 @@ export default function NavigationListItem({
           >
             <DragIcon />
           </button>
-          <div className="min-w-0 flex-1">
+          <div className="min-w-0 flex-1 w-full">
             <p className="text-sm font-semibold text-text-primary truncate">
               {item.label}
             </p>
@@ -94,7 +96,7 @@ export default function NavigationListItem({
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-normal text-text-tertiary hover:text-blue-600 mt-1 truncate block"
+                className="text-sm font-normal text-text-tertiary hover:text-blue-600 mt-1 truncate block w-full"
               >
                 {item.url}
               </Link>

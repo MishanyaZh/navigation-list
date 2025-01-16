@@ -52,7 +52,7 @@ export default function NavigationList({ items, onReorder, ...props }: Props) {
   const sensors = useSensors(mouseSensor, touchSensor);
 
   return (
-    <div className="bg-background-default border border-border-primary rounded-md overflow-hidden">
+    <div className="bg-background-default border border-border-primary rounded-md overflow-hidden w-full md:w-auto">
       <DndContext
         sensors={sensors}
         collisionDetection={pointerWithin}
